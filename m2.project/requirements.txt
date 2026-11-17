@@ -1,0 +1,10 @@
+# Interactive Diwali Greeting Creator - Requirements
+# Module 3: AI-Generated Art and Creativity (MCA)
+
+torch>=2.0.0
+torchvision>=0.15.0
+flask>=3.0.0
+pillow>=10.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+werkzeug>=3.0.0

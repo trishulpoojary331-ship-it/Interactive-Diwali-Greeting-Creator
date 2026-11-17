@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Diwali Greeting Creator | MCA Module 3: AI-Generated Art</title>
+    <!-- Google Fonts: Cinzel Decorative, Great Vibes, Outfit, Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/diwali.css">
+</head>
+<body>
+    <!-- Full-Screen Interactive Canvas (Fireworks behind, Background, Flowers, Sparkles) -->
+    <div id="canvas-container">
+        <canvas id="diwali-canvas"></canvas>
+    </div>
+
+    <!-- Festive Header -->
+    <header class="diwali-header">
+        <div class="header-left">
+            <span class="diya-emblem">🪔</span>
+            <div>
+                <h1 class="header-title">Interactive Diwali Greeting Creator</h1>
+                <p class="header-subtitle">Personalized Festive Greetings • Glowing Diyas & Sky Fireworks</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="nav-btn music-btn" id="music-toggle-btn" title="Toggle Festive Traditional Sitar Music">
+                <span class="icon" id="music-icon">🔇</span> Music Off
+            </button>
+        </div>
+    </header>
+
+    <!-- Central Personalized Animated Greeting Card Overlay -->
+    <div class="greeting-stage" id="greeting-stage">
+        <!-- Floating Greeting Card Frame -->
+        <div class="greeting-card" id="greeting-card">
+            <div class="card-border-ornament top-ornament">✦ ✧ ✦ ✧ ✦</div>
+
+            <div class="card-inner">
+                <div class="card-auspicious-symbol">ॐ • शुभ दीपावली • श्री</div>
+
+                <!-- Main Greeting Heading -->
+                <h2 class="card-greeting-heading" id="display-greeting-heading">Happy Diwali</h2>
+
+                <!-- Personalized Message Body -->
+                <p class="card-message-text" id="display-message-text">
+                    May the divine light of millions of glowing diyas illuminate your life with endless joy, good health, peace, and eternal prosperity!
+                </p>
+
+                <!-- Sender Sign-Off Name -->
+                <div class="card-sender-wrapper">
+                    <span class="with-love">With Warm Wishes from,</span>
+                    <h3 class="card-sender-name" id="display-sender-name">Thrishul & Family</h3>
+                </div>
+            </div>
+
+            <div class="card-border-ornament bottom-ornament">✦ ✧ ✦ ✧ ✦</div>
+
+            <!-- Surrounding Diyas Container (Arranged Symmetrically Around the Message) -->
+            <div class="surrounding-diyas" id="surrounding-diyas">
+                <!-- 12 Diyas generated dynamically around card frame -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Interactive Control Dock -->
+    <footer class="diwali-dock">
+        <!-- Action 1: Light Up Diyas -->
+        <button class="dock-btn diya-action-btn active" id="toggle-diyas-btn" title="Light Up All Diyas Around the Message">
+            <span class="btn-icon">🪔</span>
+            <span class="btn-text" id="diyas-btn-text">Diyas Lit (Click to Blow Out)</span>
+        </button>
+
+        <!-- Action 2: Fireworks Behind Greeting -->
+        <button class="dock-btn fireworks-btn active" id="toggle-fireworks-btn" title="Toggle Crackers & Fireworks in the Sky">
+            <span class="btn-icon">🎆</span>
+            <span class="btn-text" id="fireworks-btn-text">Fireworks: ON</span>
+        </button>
+
+        <!-- Action 3: Flowers & Sparkles Shower -->
+        <button class="dock-btn flowers-btn active" id="toggle-flowers-btn" title="Toggle Falling Flower Petals & Golden Sparkles">
+            <span class="btn-icon">🌸</span>
+            <span class="btn-text" id="flowers-btn-text">Flower Shower: ON</span>
+        </button>
+
+        <!-- Action 4: Edit Greeting Customizer Modal -->
+        <button class="dock-btn customize-btn" id="open-customizer-btn" title="Personalize Name, Message & Fonts">
+            <span class="btn-icon">✏️</span>
+            <span class="btn-text">Personalize Greeting</span>
+        </button>
+
+        <!-- Action 5: Download Greeting Card -->
+        <button class="dock-btn download-btn" id="download-card-btn" title="Save Your Customized Animated Greeting Card">
+            <span class="btn-icon">📥</span>
+            <span class="btn-text">Save Greeting</span>
+        </button>
+    </footer>
+
+    <!-- Modal 1: Personalize Greeting Input Panel -->
+    <div class="modal-backdrop" id="customizer-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>✏️ Personalize Your Diwali Greeting</h3>
+                <button class="close-btn" id="close-customizer-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-sender-name">Your Name / Family Name:</label>
+                    <input type="text" id="input-sender-name" value="Thrishul & Family" maxlength="45" placeholder="Enter your name...">
+                </div>
+
+                <div class="form-group">
+                    <label for="input-greeting-heading">Main Heading:</label>
+                    <input type="text" id="input-greeting-heading" value="Happy Diwali" maxlength="30" placeholder="e.g. Shubh Deepavali...">
+                </div>
+
+                <div class="form-group">
+                    <label for="input-greeting-msg">Personalized Message:</label>
+                    <textarea id="input-greeting-msg" rows="3" maxlength="180">May the divine light of millions of glowing diyas illuminate your life with endless joy, good health, peace, and eternal prosperity!</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Quick Message Templates:</label>
+                    <div class="template-chips">
+                        <button class="chip" data-msg="May Goddess Lakshmi bless your home with eternal abundance, peace, and boundless joy this festive season! 🪔✨">Abundance & Joy</button>
+                        <button class="chip" data-msg="Wishing you and your beloved family a sparkling Diwali glowing with happiness, health, and triumph! 🎆🎇">Family Harmony</button>
+                        <button class="chip" data-msg="May this festival of lights banish all darkness and ignite the spark of wisdom, love, and success in your life! 🪔">Wisdom & Light</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="font-style-select">Card Font Typography Style:</label>
+                    <select id="font-style-select">
+                        <option value="royal">Royal Serif (Cinzel Decorative)</option>
+                        <option value="cursive">Golden Calligraphy (Great Vibes)</option>
+                        <option value="classic">Classic Editorial (Playfair Display)</option>
+                    </select>
+                </div>
+
+                <button class="primary-btn full-width" id="apply-greeting-btn">✨ Apply to Greeting Card</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/diwali_canvas.js"></script>
+    <script src="/static/js/diwali_ui.js"></script>
+</body>
+</html>
