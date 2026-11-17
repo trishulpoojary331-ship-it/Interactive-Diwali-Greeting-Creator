@@ -1,6 +1,7 @@
 # Interactive Diwali Greeting Creator
 
 A personalized, animated Diwali greeting card web application featuring glowing earthen diyas, realistic sky fireworks, falling flower petals, and festive Carnatic sitar music.
+
 ![Python](https://img.shields.io/badge/Python-AI_Processing-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-Deep_Learning-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-Deep_Learning-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
